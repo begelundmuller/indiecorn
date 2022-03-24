@@ -25,6 +25,6 @@
 
   .xx-input-text-error {
     @apply xx-input-text;
-    @apply border-red-300 dark:border-red-700 text-red-900 dark:text-red-100 placeholder-red-300 dark:placeholder-red-700 focus:outline-none focus:ring-red-500 focus:border-red-500;
+    @apply border-red-300 dark:border-red-700 text-red-900 dark:text-red-900 focus:outline-none focus:ring-red-500 focus:border-red-500;
   }
 }

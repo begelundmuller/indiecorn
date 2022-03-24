@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Layout from "../components/Layout";
 import Router from "next/router";
+
+import Layout from "components/Layout";
 
 const Draft: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -74,9 +75,7 @@ const Draft: React.FC = () => {
                   onChange={(e) => setContent(e.target.value)}
                 />
               </div>
-              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                Time to get creative!
-              </p>
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">Time to get creative!</p>
             </div>
           </div>
 

@@ -1,9 +1,10 @@
 import React from "react";
 import { GetServerSideProps } from "next";
-import Layout from "../components/Layout";
-import Posts, { PostProps } from "../components/Posts";
 import { useSession, getSession } from "next-auth/react";
-import prisma from "../lib/prisma";
+
+import Layout from "components/Layout";
+import Posts, { PostProps } from "components/Posts";
+import prisma from "lib/prisma";
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const session = await getSession({ req });

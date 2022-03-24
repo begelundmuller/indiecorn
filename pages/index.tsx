@@ -1,42 +1,38 @@
 import React from "react";
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next";
 import Layout from "../components/Layout";
-import Posts, { PostProps } from "../components/Posts";
 import prisma from "../lib/prisma";
+import { getSession } from "next-auth/react";
 
-export const getStaticProps: GetStaticProps = async () => {
-  const feed = await prisma.post.findMany({
-    where: {
-      published: true,
-    },
-    include: {
-      author: {
-        select: {
-          name: true,
-        },
-      },
-    },
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+  if (!session) {
+    return {
+      redirect: { destination: "/auth/signin", permanent: false },
+    };
+  }
+
+  const workspaces = await prisma.workspace.findMany({
+    select: { id: true, name: true },
   });
+
+  if (workspaces.length > 0) {
+    return {
+      redirect: { destination: `/workspaces/${workspaces[0].id}`, permanent: false },
+    };
+  }
+
   return {
-    props: { feed },
+    redirect: { destination: `/workspaces/create`, permanent: false },
   };
 };
 
-type Props = {
-  feed: PostProps[];
-};
-
-const Blog: React.FC<Props> = (props) => {
+const Index: React.FC = (props) => {
   return (
     <Layout>
-      <div className="max-w-3xl mx-auto px-4 lg:px-8 space-y-8">
-        <div>
-          <h1 className="text-3xl leading-6 font-medium">My feed</h1>
-        </div>
-        <Posts posts={props.feed} />
-      </div>
+      <></>
     </Layout>
   );
 };
 
-export default Blog;
+export default Index;

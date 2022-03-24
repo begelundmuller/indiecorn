@@ -16,10 +16,7 @@ const Header: React.FC = () => {
 
   const navigation = [];
   if (status === "authenticated") {
-    navigation.push(
-      { name: "Drafts", href: "/drafts", button: false },
-      { name: "New post", href: "/create", button: false }
-    );
+    navigation.push();
   } else if (status === "unauthenticated") {
     navigation.push({
       name: "Sign in",
@@ -68,10 +65,7 @@ const Header: React.FC = () => {
                   {open ? (
                     <XIcon className="block h-6 w-6" aria-hidden="true" />
                   ) : (
-                    <MenuAlt1Icon
-                      className="block h-6 w-6"
-                      aria-hidden="true"
-                    />
+                    <MenuAlt1Icon className="block h-6 w-6" aria-hidden="true" />
                   )}
                 </Disclosure.Button>
               </div>
@@ -88,13 +82,9 @@ const Header: React.FC = () => {
                             item.button && "xx-btn-primary",
                             !item.button &&
                               "text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white",
-                            !item.button &&
-                              isActive(item.href) &&
-                              "text-black dark:text-white"
+                            !item.button && isActive(item.href) && "text-black dark:text-white"
                           )}
-                          aria-current={
-                            isActive(item.href) ? "page" : undefined
-                          }
+                          aria-current={isActive(item.href) ? "page" : undefined}
                         >
                           {item.name}
                         </a>
@@ -109,10 +99,7 @@ const Header: React.FC = () => {
                         <Menu.Button className="bg-sky-500 flex text-sm rounded-full text-white focus:outline-none hover:ring-2 hover:ring-sky-500">
                           <span className="sr-only">Open user menu</span>
                           <div className="h-8 w-8">
-                            <Avatar
-                              name={session.user.name}
-                              image={session.user.image}
-                            />
+                            <Avatar name={session.user.name} image={session.user.image} />
                           </div>
                         </Menu.Button>
                       </div>

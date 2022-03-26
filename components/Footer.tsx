@@ -1,4 +1,4 @@
-import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "components/ThemeToggle";
 
 /* This example requires Tailwind CSS v2.0+ */
 const navigation = {

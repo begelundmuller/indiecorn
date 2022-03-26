@@ -1,10 +1,11 @@
-import { Workspace } from "@prisma/client";
-import React, { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, PlusIcon } from "@heroicons/react/solid";
-import Link from "next/link";
+import { Workspace } from "@prisma/client";
 import clsx from "clsx";
+import Link from "next/link";
+import React, { Fragment } from "react";
 import useSWR from "swr";
+
 import fetcher from "lib/fetcher";
 
 type Props = {
@@ -12,7 +13,7 @@ type Props = {
 };
 
 const WorkspaceSelector: React.FC<Props> = ({ currentWorkspace }) => {
-  const { data, error } = useSWR<Workspace[]>("/api/workspaces", fetcher);
+  const { data } = useSWR<Workspace[]>("/api/workspaces", fetcher);
 
   return (
     <Menu as="div" className="relative inline-block text-left min-w-[200px]">

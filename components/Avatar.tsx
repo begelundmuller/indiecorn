@@ -54,14 +54,9 @@ const Avatar: React.FC<Props> = ({ name, image }) => {
 
   return (
     <span
-      className={clsx(
-        "inline-flex items-center justify-center h-full w-full rounded-full",
-        color
-      )}
+      className={clsx("inline-flex items-center justify-center h-full w-full rounded-full", color)}
     >
-      <span className="text-md font-medium leading-none text-white">
-        {initials}
-      </span>
+      <span className="text-md font-medium leading-none text-white">{initials}</span>
     </span>
   );
 };

@@ -6,7 +6,8 @@ import { useSession } from "next-auth/react";
 import React, { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { MenuAlt1Icon, XIcon } from "@heroicons/react/outline";
-import Avatar from "./Avatar";
+
+import Avatar from "components/Avatar";
 
 const Header: React.FC = () => {
   const router = useRouter();

@@ -23,9 +23,7 @@ const Posts: React.FC<{ posts: PostProps[] }> = ({ posts }) => {
           className="hover:cursor-pointer rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-black p-6 shadow-sm space-y-3 hover:border-gray-500 dark:hover:border-gray-500"
         >
           <h2 className="text-xl font-medium">{post.title}</h2>
-          <small className="text-sm">
-            By {post.author ? post.author.name : "Unknown author"}
-          </small>
+          <small className="text-sm">By {post.author ? post.author.name : "Unknown author"}</small>
           <ReactMarkdown>{post.content}</ReactMarkdown>
         </div>
       ))}

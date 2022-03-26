@@ -1,14 +1,10 @@
-import Layout from "components/Layout";
 import { GetServerSideProps } from "next";
-import { Providers } from "types/next-auth";
-import {
-  getCsrfToken,
-  getProviders,
-  getSession,
-  signIn,
-} from "next-auth/react";
+import { getCsrfToken, getProviders, getSession, signIn } from "next-auth/react";
 import clsx from "clsx";
 import { useState } from "react";
+
+import { Providers } from "types/next-auth";
+import Layout from "components/Layout";
 
 type Props = {
   csrfToken: string | undefined;
@@ -53,11 +49,7 @@ const SignIn: React.FC<Props> = ({ csrfToken, providers }) => {
                   method="post"
                   action="/api/auth/signin/email"
                 >
-                  <input
-                    name="csrfToken"
-                    type="hidden"
-                    defaultValue={csrfToken}
-                  />
+                  <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
                   <div className="w-full py-2 border-t border-gray-300 dark:border-gray-700" />
                   <input
                     type="email"
@@ -68,10 +60,7 @@ const SignIn: React.FC<Props> = ({ csrfToken, providers }) => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
-                  <button
-                    type="submit"
-                    className="w-full px-6 py-3 xx-btn-primary"
-                  >
+                  <button type="submit" className="w-full px-6 py-3 xx-btn-primary">
                     Sign in with Email
                   </button>
                 </form>

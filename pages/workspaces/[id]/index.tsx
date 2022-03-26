@@ -1,10 +1,11 @@
-import React from "react";
+import { Workspace } from "@prisma/client";
 import { GetServerSideProps } from "next";
+import React from "react";
+
 import Layout from "components/Layout";
 import Posts, { PostProps } from "components/Posts";
-import prisma from "lib/prisma";
-import { Workspace } from "@prisma/client";
 import WorkspaceSelector from "components/WorkspaceSelector";
+import prisma from "lib/prisma";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const id = Array.isArray(params.id) ? params.id[0] : params.id;

@@ -19,12 +19,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   if (workspaces.length > 0) {
     return {
-      redirect: { destination: `/workspaces/${workspaces[0].id}`, permanent: false },
+      redirect: { destination: `/w/${workspaces[0].id}`, permanent: false },
     };
   }
 
   return {
-    redirect: { destination: `/workspaces/create`, permanent: false },
+    redirect: { destination: `/w/create`, permanent: false },
   };
 };
 

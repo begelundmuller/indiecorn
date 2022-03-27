@@ -38,7 +38,7 @@ const WorkspaceSelector: React.FC<Props> = ({ currentWorkspace }) => {
             {data?.map((workspace) => (
               <Menu.Item key={workspace.id}>
                 {({ active }) => (
-                  <Link href="/workspaces/[id]" as={`/workspaces/${workspace.id}`}>
+                  <Link href="/w/[id]" as={`/w/${workspace.id}`}>
                     <a
                       className={clsx(
                         "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200",
@@ -55,7 +55,7 @@ const WorkspaceSelector: React.FC<Props> = ({ currentWorkspace }) => {
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
-                <Link href="/workspaces/create">
+                <Link href="/w/create">
                   <a
                     className={clsx(
                       "group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-200",

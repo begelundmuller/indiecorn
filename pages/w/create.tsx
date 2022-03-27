@@ -28,7 +28,7 @@ const CreateWorkspace: React.FC = () => {
             createWorkspace({
               body: input,
               onSuccess: async (data) => {
-                await Router.push("/workspaces/[id]", `/workspaces/${data.id}`);
+                await Router.push("/w/[id]", `/w/${data.id}`);
               },
             });
           })}

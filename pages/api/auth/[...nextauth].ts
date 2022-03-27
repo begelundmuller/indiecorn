@@ -1,34 +1,39 @@
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { NextApiHandler } from "next";
 import NextAuth from "next-auth";
+import { Provider } from "next-auth/providers";
 import EmailProvider from "next-auth/providers/email";
 import GoogleProvider from "next-auth/providers/google";
 
 import prisma from "lib/prisma";
 
-const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
-export default authHandler;
+const providers: Provider[] = [];
 
-const options = {
+if (process.env.GOOGLE_CLIENT_ID) {
+  providers.push(GoogleProvider({
+    clientId: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  }));
+}
+
+if (process.env.EMAIL_SERVER_HOST) {
+  providers.push(EmailProvider({
+    from: process.env.EMAIL_FROM,
+    server: {
+      host: process.env.EMAIL_SERVER_HOST,
+      port: process.env.EMAIL_SERVER_PORT,
+      auth: {
+        user: process.env.EMAIL_SERVER_USER,
+        pass: process.env.EMAIL_SERVER_PASSWORD,
+      },
+    },
+  }));
+}
+
+const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, {
   adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
-    EmailProvider({
-      from: process.env.EMAIL_FROM,
-      server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: process.env.EMAIL_SERVER_PORT,
-        auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.EMAIL_SERVER_PASSWORD,
-        },
-      },
-    }),
-  ],
+  providers,
   pages: {
     signIn: "/auth/signin",
     verifyRequest: "/auth/verify-request",
@@ -44,4 +49,6 @@ const options = {
       return session;
     }
   }
-};
+});
+
+export default authHandler;

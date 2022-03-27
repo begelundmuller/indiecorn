@@ -35,5 +35,13 @@ const options = {
     // signOut: '/auth/signout',
     // error: '/auth/error', // Error code passed in query string as ?error=
     // newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
+  },
+  callbacks: {
+    // Adds extra properties to the session object
+    async session({ session, token, user }) {
+      // Note: Session properties must also be declared in types/next-auth.d.ts
+      session.user.id = user.id;
+      return session;
+    }
   }
 };

@@ -27,8 +27,7 @@ const Header: React.FC = () => {
   }
 
   const userNavigation = [
-    { name: "Your Profile", href: "#" },
-    { name: "Settings", href: "#" },
+    { name: "Settings", href: "/u/settings" },
     { name: "Sign out", href: "/api/auth/signout" },
   ];
 

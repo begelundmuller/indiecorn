@@ -6,7 +6,7 @@ type MutateFunction<Body, Data> = (opts: MutateFunctionOptions<Body, Data>) => P
 
 type MutateFunctionOptions<Body, Data> = {
     body: Body;
-    onSuccess: (data: Data) => Promise<void>;
+    onSuccess?: (data: Data) => Promise<void>;
 };
 
 type MutateResult<Data> = {
@@ -34,7 +34,9 @@ const useMutation = <Body = any, Data = any>(method: string, path: string) => {
             if (res.ok) {
                 const data = isJSON ? await res.json() : null;
                 setData(data);
-                await onSuccess(data);
+                if (onSuccess) {
+                    await onSuccess(data);
+                }
             } else {
                 if (isJSON) {
                     const json = await res.json();

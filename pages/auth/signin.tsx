@@ -1,10 +1,10 @@
+import clsx from "clsx";
 import { GetServerSideProps } from "next";
 import { getCsrfToken, getProviders, getSession, signIn } from "next-auth/react";
-import clsx from "clsx";
 import { useState } from "react";
 
-import { Providers } from "types/next-auth";
 import Layout from "components/Layout";
+import { Providers } from "types/next-auth";
 
 type Props = {
   csrfToken: string | undefined;

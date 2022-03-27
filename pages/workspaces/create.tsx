@@ -1,12 +1,12 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import { Workspace } from "@prisma/client";
 import clsx from "clsx";
 import Router from "next/router";
-import { Workspace } from "@prisma/client";
+import React from "react";
+import { useForm } from "react-hook-form";
 
-import useMutation from "lib/useMutation";
 import Alert from "components/Alert";
 import Layout from "components/Layout";
+import useMutation from "lib/useMutation";
 
 type Inputs = {
   name: string;

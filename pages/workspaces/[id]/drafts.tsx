@@ -1,6 +1,6 @@
-import React from "react";
 import { GetServerSideProps } from "next";
 import { useSession, getSession } from "next-auth/react";
+import React from "react";
 
 import Layout from "components/Layout";
 import Posts, { PostProps } from "components/Posts";

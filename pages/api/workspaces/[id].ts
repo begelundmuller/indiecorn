@@ -3,22 +3,23 @@ import { getSession } from "next-auth/react";
 
 import prisma from "lib/prisma";
 
-// PATCH /api/users
-// Required fields in body: name
+// GET, PATCH /api/workspaces/[id]
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req });
-  if (!session.user) {
+  if (!session) {
     return res.status(401).send({ error: "Unauthorized" });
   }
 
+  const workspaceId = Array.isArray(req.query.id) ? req.query.id[0] : req.query.id;
+
   if (req.method === "PATCH") {
     const { name } = req.body;
-    const result = await prisma.user.update({
+    const result = await prisma.workspace.update({
       data: {
         name,
       },
       where: {
-        id: session.user.id,
+        id: workspaceId,
       },
     });
     res.json(result);

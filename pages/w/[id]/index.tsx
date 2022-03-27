@@ -1,5 +1,6 @@
 import { Workspace } from "@prisma/client";
 import { GetServerSideProps } from "next";
+import Link from "next/link";
 import React from "react";
 
 import Layout from "components/Layout";
@@ -44,17 +45,20 @@ type Props = {
   currentWorkspace: Workspace;
 };
 
-const Blog: React.FC<Props> = (props) => {
+const Blog: React.FC<Props> = ({ currentWorkspace, feed }) => {
   return (
     <Layout>
       <div className="max-w-3xl mx-auto px-4 lg:px-8 space-y-8">
         <div className="flex space-x-4 justify-end">
-          <WorkspaceSelector currentWorkspace={props.currentWorkspace} />
+          <WorkspaceSelector currentWorkspace={currentWorkspace} />
+          <Link href="/w/[id]/settings" as={`/w/${currentWorkspace.id}/settings`}>
+            <a className="py-2 px-4 xx-btn-secondary">Workspace settings</a>
+          </Link>
         </div>
         <div>
           <h1 className="text-3xl leading-6 font-medium">My feed</h1>
         </div>
-        <Posts posts={props.feed} />
+        <Posts posts={feed} />
       </div>
     </Layout>
   );

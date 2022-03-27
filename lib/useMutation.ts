@@ -41,7 +41,7 @@ const useMutation = <Body = any, Data = any>(method: string, path: string) => {
                     const message = json?.error;
                     setError(Error(message));
                 } else {
-                    setError(Error(await res.text()))
+                    setError(Error(await res.text()));
                 }
             }
         } catch (error) {

@@ -11,7 +11,7 @@ import prisma from "lib/prisma";
 import useMutation from "lib/useMutation";
 
 type Props = {
-  user: User | null;
+  user: User;
 };
 
 type Inputs = {

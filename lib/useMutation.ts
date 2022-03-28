@@ -5,7 +5,7 @@ type MutationTuple<Body, Data> = [MutateFunction<Body, Data>, MutateResult<Data>
 type MutateFunction<Body, Data> = (opts: MutateFunctionOptions<Body, Data>) => Promise<void>;
 
 type MutateFunctionOptions<Body, Data> = {
-    body: Body;
+    body?: Body;
     onSuccess?: (data: Data) => Promise<void>;
 };
 
@@ -26,7 +26,7 @@ const useMutation = <Body = any, Data = any>(method: string, path: string) => {
             const res = await fetch(path, {
                 method,
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(body),
+                body: body && JSON.stringify(body),
             });
 
             const isJSON = res.headers.get("content-type")?.indexOf("application/json") !== -1;

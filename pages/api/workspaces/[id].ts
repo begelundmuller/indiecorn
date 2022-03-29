@@ -23,6 +23,13 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       },
     });
     res.json(result);
+  } else if (req.method === "DELETE") {
+    await prisma.workspace.delete({
+      where: {
+        id: workspaceId,
+      },
+    });
+    res.send({});
   } else {
     throw new Error(
       `The HTTP ${req.method} method is not supported at this route.`

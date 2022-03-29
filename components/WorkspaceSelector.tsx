@@ -38,16 +38,18 @@ const WorkspaceSelector: React.FC<Props> = ({ currentWorkspace }) => {
             {data?.map((workspace) => (
               <Menu.Item key={workspace.id}>
                 {({ active }) => (
-                  <Link href="/w/[id]" as={`/w/${workspace.id}`}>
-                    <a
-                      className={clsx(
-                        "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200",
-                        active ? "font-medium" : ""
-                      )}
-                    >
-                      {workspace.name}
-                    </a>
-                  </Link>
+                  <div>
+                    <Link href="/w/[id]" as={`/w/${workspace.id}`}>
+                      <a
+                        className={clsx(
+                          "block px-4 py-2 text-sm text-gray-700",
+                          active ? "bg-gray-200" : ""
+                        )}
+                      >
+                        {workspace.name}
+                      </a>
+                    </Link>
+                  </div>
                 )}
               </Menu.Item>
             ))}
@@ -58,8 +60,8 @@ const WorkspaceSelector: React.FC<Props> = ({ currentWorkspace }) => {
                 <Link href="/w/create">
                   <a
                     className={clsx(
-                      "group flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-200",
-                      active ? "font-medium" : ""
+                      "group flex items-center px-4 py-2 text-sm text-gray-700",
+                      active ? "bg-gray-200" : ""
                     )}
                   >
                     <PlusIcon className="mr-3 h-5 w-5" aria-hidden="true" />

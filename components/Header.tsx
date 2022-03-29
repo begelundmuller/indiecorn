@@ -116,16 +116,18 @@ const Header: React.FC = () => {
                           {userNavigation.map((item) => (
                             <Menu.Item key={item.name}>
                               {({ active }) => (
-                                <Link href={item.href}>
-                                  <a
-                                    className={clsx(
-                                      "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-200",
-                                      active ? "font-medium" : ""
-                                    )}
-                                  >
-                                    {item.name}
-                                  </a>
-                                </Link>
+                                <div>
+                                  <Link href={item.href}>
+                                    <a
+                                      className={clsx(
+                                        "block px-4 py-2 text-sm text-gray-700",
+                                        active ? "bg-gray-200" : ""
+                                      )}
+                                    >
+                                      {item.name}
+                                    </a>
+                                  </Link>
+                                </div>
                               )}
                             </Menu.Item>
                           ))}

@@ -1,0 +1,64 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nrwl/nx"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "extends": ["prettier", "plugin:import/recommended"],
+      "plugins": ["import"],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": ["*"]
+              }
+            ]
+          }
+        ],
+        "import/order": [
+          "error",
+          {
+            "groups": ["builtin", "external", ["internal", "unknown"], "parent", "sibling", "index"],
+            "newlines-between": "always",
+            "alphabetize": { "order": "asc", "caseInsensitive": true }
+          }
+        ]
+      },
+      "settings": {
+        "import/parsers": {
+          "@typescript-eslint/parser": [".ts", ".tsx"]
+        },
+        "import/resolver": {
+          "typescript": {
+            "project": ["tsconfig.base.json", "apps/*/tsconfig.json", "libs/*/tsconfig.json"]
+          },
+          "node": {
+            "project": ["tsconfig.base.json", "apps/*/tsconfig.json", "libs/*/tsconfig.json"]
+          }
+        }
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nrwl/nx/typescript"],
+      "rules": {
+        "quotes": ["error", "double", { "allowTemplateLiterals": true, "avoidEscape": true }],
+        "semi": ["error", "always"]
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nrwl/nx/javascript"],
+      "rules": {
+        "quotes": ["error", "double", { "allowTemplateLiterals": true, "avoidEscape": true }],
+        "semi": ["error", "always"]
+      }
+    }
+  ]
+}

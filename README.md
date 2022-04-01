@@ -10,14 +10,14 @@
 
 - [x] Setup web stack consisting of [Next.js](https://nextjs.org), [Tailwind CSS](https://tailwindcss.com), and [Prisma](https://www.prisma.io)
 - [x] Add authentication using [Next Auth](https://next-auth.js.org)
-- [ ] Add support for user and workspace deletion
-- [ ] Add monorepo setup with NX
+- [x] Add support for user and workspace deletion
+- [x] Add monorepo setup with NX
+- [x] Add good testing facilities, incl. end to end testing
+- [ ] Add docs with Docusaurus or Nextra exposed on `/docs`
 - [ ] Add highly configurable authorization management
 - [ ] Add workspace and groups administration
-- [ ] Add good testing facilities, incl. end to end testing
 - [ ] Add SSO and SAML support using [Work OS](https://workos.com) or [BoxyHQ](https://boxyhq.com)
 - [ ] Add billing, subscription and tax management with support for usage-based pricing using [Stripe](https://stripe.com/) or [Paddle](https://paddle.com)
-- [ ] Add docs with Docusaurus or Nextra exposed on `/docs`
 - [ ] Add Docker dev containers and Docker Compose for local development with all dependencies set up
 - [ ] Add Docker image builds using Github CI/CD
 - [ ] Add deployment documentation for Postgres and [CockroachDB])(https://www.cockroachlabs.com)
@@ -41,11 +41,22 @@
 - [ ] Add status page with Atlassian Statuspage
 - [ ] Add search with https://typesense.org
 
+
 ## Set up a development environment
 
 Complete the following steps to set up a development environment
 
 1. Copy `.env.example` into `.env` (ignored by Git) and populate the settings. For development purposes, it is sufficient to specify one authentication provider. You can use [Ethereal](ethereal.email) to quickly configure email authentication.
-2. Spin up the development dependencies using `docker-compose up`
-3. Run migrations and seed the database using `npx prisma migrate dev` followed by `npx prisma db seed`
-4. Run `yarn dev` to start the site
+2. Install Docker if you don't already have it installed
+2. Spin up a development container in VS Code by running the "Remote-Containers: Reopen in Container" command
+3. Install dependencies by running `yarn install`
+4. Run migrations with `yarn migrate`
+5. Run `yarn start` to start the site and open i
+
+## Using `nx`
+
+This project uses `nx` for monorepo management:
+
+- Run `nx g @nrwl/TYPE:lib my-lib` to generate a library (replace `TYPE` with e.g. `next` or `workspace`)
+- Run `nx e2e frontend` or `nx affected:e2e frontend` to run end-to-end tests
+- Run `nx graph` to see a diagram of the project dependencies

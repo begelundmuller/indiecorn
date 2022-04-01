@@ -15,9 +15,11 @@ const Header: React.FC = () => {
 
   const { data: session, status } = useSession();
 
-  const navigation = [];
+  const navigation = [
+    { name: "Docs", href: process.env.DOCS_URL || "", button: false },
+  ];
   if (status === "authenticated") {
-    navigation.push();
+    // navigation.push();
   } else if (status === "unauthenticated") {
     navigation.push({
       name: "Sign in",
@@ -75,20 +77,20 @@ const Header: React.FC = () => {
                 <div className="flex items-center justify-end">
                   <div className="flex">
                     {navigation.map((item) => (
-                      <Link key={item.name} href={item.href}>
-                        <a
-                          className={clsx(
-                            "px-3 py-2 rounded-md font-medium",
-                            item.button && "xx-btn-primary",
-                            !item.button &&
-                              "text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white",
-                            !item.button && isActive(item.href) && "text-black dark:text-white"
-                          )}
-                          aria-current={isActive(item.href) ? "page" : undefined}
-                        >
-                          {item.name}
-                        </a>
-                      </Link>
+                      <a
+                        key={item.name} 
+                        href={item.href}
+                        className={clsx(
+                          "px-3 py-2 rounded-md font-medium",
+                          item.button && "xx-btn-primary",
+                          !item.button &&
+                            "text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white",
+                          !item.button && isActive(item.href) && "text-black dark:text-white"
+                        )}
+                        aria-current={isActive(item.href) ? "page" : undefined}
+                      >
+                        {item.name}
+                      </a>
                     ))}
                   </div>
 

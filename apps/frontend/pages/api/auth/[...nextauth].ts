@@ -7,6 +7,10 @@ import GoogleProvider from "next-auth/providers/google";
 
 import prisma from "@frontend/lib/prisma";
 
+if (!process.env.NEXTAUTH_URL) {
+  process.env.NEXTAUTH_URL = process.env.FRONTEND_URL;
+}
+
 const providers: Provider[] = [];
 
 if (process.env.GOOGLE_CLIENT_ID) {

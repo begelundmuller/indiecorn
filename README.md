@@ -13,12 +13,12 @@
 - [x] Add support for user and workspace deletion
 - [x] Add monorepo setup with NX
 - [x] Add good testing facilities, incl. end to end testing
-- [ ] Add docs with Docusaurus or Nextra exposed on `/docs`
+- [x] Add Docker dev containers and Docker Compose for local development with all dependencies set up
+- [x] Add docs with Docusaurus
 - [ ] Add highly configurable authorization management
 - [ ] Add workspace and groups administration
 - [ ] Add SSO and SAML support using [Work OS](https://workos.com) or [BoxyHQ](https://boxyhq.com)
 - [ ] Add billing, subscription and tax management with support for usage-based pricing using [Stripe](https://stripe.com/) or [Paddle](https://paddle.com)
-- [ ] Add Docker dev containers and Docker Compose for local development with all dependencies set up
 - [ ] Add Docker image builds using Github CI/CD
 - [ ] Add deployment documentation for Postgres and [CockroachDB])(https://www.cockroachlabs.com)
 - [ ] Add guides for setting up managed versions of dependencies
@@ -51,7 +51,8 @@ Complete the following steps to set up a development environment
 2. Spin up a development container in VS Code by running the "Remote-Containers: Reopen in Container" command
 3. Install dependencies by running `yarn install`
 4. Run migrations with `yarn migrate`
-5. Run `yarn start` to start the site and open i
+5. Run `yarn start` to start the site on `localhost:3000`
+6. Run `yarn docs:start` to start the docs site on `localhost:3001`
 
 ## Using `nx`
 
